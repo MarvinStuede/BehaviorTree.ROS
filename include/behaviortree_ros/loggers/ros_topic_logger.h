@@ -46,8 +46,10 @@ int8_t toROS(NodeStatus status){
 
 // Convert the Tree to a ROS message
 behaviortree_ros::BehaviorTree BTtoROS(const BT::Tree & tree){
+
   behaviortree_ros::BehaviorTree ros_tree;
   behaviortree_ros::TreeNode ros_node;
+  behaviortree_ros::NodeStatus ros_status;
 
   ros_tree.root_uid = tree.rootNode()->UID();
 
@@ -56,9 +58,11 @@ behaviortree_ros::BehaviorTree BTtoROS(const BT::Tree & tree){
     ros_node.type = toROS(node->type());
     ros_node.instance_name = node->name();
     ros_node.registration_name = node->registrationName();
+    ros_status.value = toROS(node->status());
+    ros_node.status = ros_status;
+
     //Following values not implemented
     //ros_node.params = ...
-    //ros_node.status = ...
     //ros_node.children_uid = ...
 
     ros_tree.nodes.push_back(ros_node);

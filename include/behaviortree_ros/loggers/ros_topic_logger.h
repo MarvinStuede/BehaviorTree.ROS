@@ -39,6 +39,8 @@ int8_t toROS(NodeStatus status){
     return behaviortree_ros::NodeStatus::RUNNING;
   case NodeStatus::FAILURE:
     return behaviortree_ros::NodeStatus::FAILURE;
+  case NodeStatus::SUCCESS:
+    return behaviortree_ros::NodeStatus::SUCCESS;
   default:
     return behaviortree_ros::NodeStatus::IDLE;
   }
